@@ -214,7 +214,7 @@ html = """
         body { font-family: Arial; margin: 40px; background: #fff; color: #222; transition: background 0.3s, color 0.3s; }
         table.dataTable thead th { font-weight: bold; }
         th.waktu, td.waktu { width: 150px; min-width: 100px; max-width: 180px; white-space: nowrap; text-align: left; }
-        th.profit, td.profit { width: 90px; min-width: 80px; max-width: 100px; white-space: nowrap; text-align: left; }
+        th.profit, td.profit { width: 110px; min-width: 80px; max-width: 120px; white-space: nowrap; text-align: left; }
         .dark-mode { background: #181a1b !important; color: #e0e0e0 !important; }
         .dark-mode #jam { color: #ffb300 !important; }
         .dark-mode table.dataTable { background: #23272b !important; color: #e0e0e0 !important; }
@@ -482,13 +482,13 @@ async def websocket_endpoint(websocket: WebSocket):
         try:
             gram = 20000000 / h["buying_rate"]
             val = int(gram * h["selling_rate"] - 19315000)
-            gram_str = f"{gram:,.3f}".replace(",", ".")
+            gram_str = f"{gram:,.4f}".replace(",", ".")
             if val > 0:
-                return f"+{format_rupiah(val)} 🟢 ({gram_str} gr)"
+                return f"+{format_rupiah(val)} 🟢({gram_str}gr)"
             elif val < 0:
-                return f"-{format_rupiah(abs(val))} 🔴 ({gram_str} gr)"
+                return f"-{format_rupiah(abs(val))} 🔴({gram_str}gr)"
             else:
-                return f"0 ➖ ({gram_str} gr)"
+                return f"0 ➖({gram_str}gr)"
         except:
             return "-"
     
@@ -496,13 +496,13 @@ async def websocket_endpoint(websocket: WebSocket):
         try:
             gram = 30000000 / h["buying_rate"]
             val = int(gram * h["selling_rate"] - 28980000)
-            gram_str = f"{gram:,.3f}".replace(",", ".")
+            gram_str = f"{gram:,.4f}".replace(",", ".")
             if val > 0:
-                return f"+{format_rupiah(val)} 🟢 ({gram_str} gr)"
+                return f"+{format_rupiah(val)} 🟢({gram_str}gr)"
             elif val < 0:
-                return f"-{format_rupiah(abs(val))} 🔴 ({gram_str} gr)"
+                return f"-{format_rupiah(abs(val))} 🔴({gram_str}gr)"
             else:
-                return f"0 ➖ ({gram_str} gr)"
+                return f"0 ➖({gram_str}gr)"
         except:
             return "-"
 
