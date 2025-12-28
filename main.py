@@ -215,6 +215,7 @@ html = """
         table.dataTable thead th { font-weight: bold; }
         th.waktu, td.waktu { width: 150px; min-width: 100px; max-width: 180px; white-space: nowrap; text-align: left; }
         th.profit, td.profit { width: 150px; min-width: 80px; max-width: 160px; white-space: nowrap; text-align: left; }
+        th.profit1, td.profit1 { width: 120px; min-width: 80px; max-width: 130px; white-space: nowrap; text-align: left; }
         .dark-mode { background: #181a1b !important; color: #e0e0e0 !important; }
         .dark-mode #jam { color: #ffb300 !important; }
         .dark-mode table.dataTable { background: #23272b !important; color: #e0e0e0 !important; }
@@ -254,7 +255,7 @@ html = """
             <tr>
                 <th class="waktu">Waktu</th>
                 <th>Data Transaksi</th>
-                <th class="profit">Est. cuan 20 JT</th>
+                <th class="profit1">Est. cuan 20 JT</th>
                 <th class="profit">Est. cuan 30 JT</th>
             </tr>
         </thead>
@@ -332,7 +333,7 @@ html = """
             var dataArr = history.map(function(d) {
                 return {
                     waktu: d.created_at,
-                    all: (d.status || "➖") + " | Harga Beli: " + d.buying_rate + " | Harga Jual: " + d.selling_rate,
+                    all: (d.status || "➖") + " | Harga Beli: " + d.buying_rate + " |Jual: " + d.selling_rate,
                     jt20: d.jt20,
                     jt30: d.jt30
                 };
@@ -484,11 +485,11 @@ async def websocket_endpoint(websocket: WebSocket):
             val = int(gram * h["selling_rate"] - 19315000)
             gram_str = f"{gram:,.4f}".replace(",", ".")
             if val > 0:
-                return f"+{format_rupiah(val)} 🟢({gram_str}gr)"
+                return f"+{format_rupiah(val)}🟢({gram_str}gr)"
             elif val < 0:
-                return f"-{format_rupiah(abs(val))} 🔴({gram_str}gr)"
+                return f"-{format_rupiah(abs(val))}🔴({gram_str}gr)"
             else:
-                return f"0 ➖({gram_str}gr)"
+                return f"0➖({gram_str}gr)"
         except:
             return "-"
     
@@ -498,11 +499,11 @@ async def websocket_endpoint(websocket: WebSocket):
             val = int(gram * h["selling_rate"] - 28980000)
             gram_str = f"{gram:,.4f}".replace(",", ".")
             if val > 0:
-                return f"+{format_rupiah(val)} 🟢({gram_str}gr)"
+                return f"+{format_rupiah(val)}🟢({gram_str}gr)"
             elif val < 0:
-                return f"-{format_rupiah(abs(val))} 🔴({gram_str}gr)"
+                return f"-{format_rupiah(abs(val))}🔴({gram_str}gr)"
             else:
-                return f"0 ➖({gram_str}gr)"
+                return f"0➖({gram_str}gr)"
         except:
             return "-"
 
